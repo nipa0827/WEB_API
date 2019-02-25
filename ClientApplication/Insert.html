@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Save").click(function () {
+                var employee = new Object();
+                employee.name = $('#name').val();
+                employee.age = $('#age').val();
+                $.ajax({
+                    headers: {},
+                    url: "http://localhost:63218/api/employee",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "jsonp",
+                    success: function (employee) {
+                        alert("call succeeded");
+                    },
+                    failure: function (response) {
+                        alert("call failed");
+                    }
+                }); 
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="form1">
+        Name :- <input type="text" name="name" id="name" />
+        Age:- <input type="number" name="age" id="age" />
+        <input type="button" id="Save" value="Save Data" />
+    </form>
+</body>
+</html>
